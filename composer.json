@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "OptimistDigital\\NovaTranslationsLoader\\": "src/"
+      "Workup\\NovaTranslationsLoader\\": "src/"
     }
   },
   "extra": {
