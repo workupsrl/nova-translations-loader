@@ -43,7 +43,7 @@ trait LoadsNovaTranslations
     private function translations($pckgTransDir, $pckgName, $publish)
     {
         if (app()->runningInConsole() && $publish) {
-            $this->publishes([$pckgTransDir => $this->getLangPath($pckgName)], 'translations');
+            $this->publishes([$pckgTransDir => $this->langPath("vendor/{$pckgName}")], 'translations');
             return;
         }
 
@@ -111,7 +111,7 @@ trait LoadsNovaTranslations
 
         $fileDir = $from === 'local'
             ? $packageTranslationsDir
-            : $this->getLangPath($pckgName);
+            : $this->langPath("vendor/{$packageName}");
 
         $filePath = "$fileDir/{$locale}.json";
 
@@ -122,5 +122,11 @@ trait LoadsNovaTranslations
         $fileContents = json_decode(file_get_contents($filePath), true);
 
         return !empty($fileContents) ? $filePath : null;
+    }
+
+    // Adds Laravel 8 support where 'lang_path' helper does not exist
+    private function langPath($path)
+    {
+        return app()->langPath() . '/' . ltrim($path, '/');
     }
 }
