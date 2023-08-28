@@ -105,7 +105,7 @@ trait LoadsNovaTranslations
         return true;
     }
 
-    private function getTranslationsFile($locale, $from, $packageTranslationsDir, $pckgName)
+    private function getTranslationsFile($locale, $from, $packageTranslationsDir, $packageName)
     {
         if (empty($locale)) return null;
 
